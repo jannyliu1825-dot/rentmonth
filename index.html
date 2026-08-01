@@ -166,56 +166,54 @@
     <!-- 模態框：結帳流程 (Add Payment Info / Purchase) -->
     <div id="checkout-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
         <div class="modal-overlay absolute inset-0 transition-opacity" onclick="closeCheckoutModal()"></div>
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg relative z-10 overflow-hidden transform transition-all">
-            <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
-                <h3 id="checkout-step-title" class="text-lg font-bold text-gray-900">填寫承租人資料</h3>
-                <button onclick="closeCheckoutModal()" class="text-gray-500 hover:text-gray-700">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg relative z-10 overflow-hidden transform transition-all flex flex-col max-h-[90vh]">
+            <div class="p-5 border-b flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-lg border border-green-200 bg-green-50 text-green-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6m-6 4h4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">填寫訂購與付款資訊</h3>
+                </div>
+                <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-gray-600 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            
-            <!-- 步驟一：填寫資訊 -->
-            <div id="checkout-step-1" class="p-6">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
-                        <input type="text" id="cust-name" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="王小明">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">聯絡電話</label>
-                        <input type="tel" id="cust-phone" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="0912-345-678">
-                    </div>
+
+            <div class="p-6 overflow-y-auto hide-scrollbar space-y-5">
+                <div>
+                    <label class="flex items-center gap-1.5 text-sm font-semibold text-gray-800 mb-1.5">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        訂購人姓名 <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="cust-name" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 placeholder-gray-400 outline-none transition" placeholder="請輸入收件人姓名">
                 </div>
-                <div class="mt-8 flex justify-end">
-                    <button onclick="goToPayment()" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">下一步：付款資訊</button>
+                <div>
+                    <label class="flex items-center gap-1.5 text-sm font-semibold text-gray-800 mb-1.5">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        行動電話 <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="cust-phone" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 placeholder-gray-400 outline-none transition" placeholder="請輸入手機號碼 (例: 0912345678)">
+                </div>
+                <div>
+                    <label class="flex items-center gap-1.5 text-sm font-semibold text-gray-800 mb-1.5">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        配送地址 <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="cust-address" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 placeholder-gray-400 outline-none transition" placeholder="請輸入完整的宅配地址">
+                </div>
+                <div>
+                    <label class="flex items-center gap-1.5 text-sm font-semibold text-gray-800 mb-1.5">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M5 6h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"></path></svg>
+                        匯款帳號後 5 碼 <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="cust-bank5" maxlength="5" inputmode="numeric" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 placeholder-gray-400 outline-none transition" placeholder="請輸入您轉帳使用的帳號後 5 碼">
+                    <p class="mt-2 text-xs text-gray-400">付款方式為銀行轉帳，請填寫以利對帳核對。</p>
                 </div>
             </div>
 
-            <!-- 步驟二：付款資訊 -->
-            <div id="checkout-step-2" class="p-6 hidden">
-                <div class="bg-blue-50 p-4 rounded-lg mb-4 border border-blue-100">
-                    <p class="text-sm text-blue-800">為保留您的預約，我們將收取第一個月的租金作為訂金：<strong id="deposit-amount"></strong></p>
-                </div>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">信用卡號碼</label>
-                        <input type="text" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="**** **** **** ****">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">有效期限</label>
-                            <input type="text" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="MM/YY">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">CVC</label>
-                            <input type="text" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="123">
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 flex justify-between">
-                    <button onclick="backToInfo()" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition">上一步</button>
-                    <button onclick="completePurchase()" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">確認付款並預訂</button>
-                </div>
+            <div class="p-4 border-t bg-white flex gap-3">
+                <button onclick="backToCartFromCheckout()" class="flex-1 px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-medium hover:bg-gray-50 transition">返回購物車</button>
+                <button onclick="completePurchase()" class="flex-1 px-6 py-3 bg-green-700 text-white rounded-xl hover:bg-green-800 transition font-bold">確認付款與送出</button>
             </div>
         </div>
     </div>
@@ -465,12 +463,6 @@
             
             closeCartModal();
             const total = cart.reduce((sum, item) => sum + item.price, 0);
-            
-            // 重置表單狀態
-            document.getElementById('checkout-step-1').classList.remove('hidden');
-            document.getElementById('checkout-step-2').classList.add('hidden');
-            document.getElementById('checkout-step-title').innerText = '填寫承租人資料';
-            document.getElementById('deposit-amount').innerText = formatMoney(total);
 
             document.getElementById('checkout-modal').classList.remove('hidden');
 
@@ -486,42 +478,34 @@
             document.getElementById('checkout-modal').classList.add('hidden');
         }
 
-        // 6. 填寫付款資訊: add_payment_info
-        function goToPayment() {
-            const name = document.getElementById('cust-name').value;
-            const phone = document.getElementById('cust-phone').value;
-            
-            if(!name || !phone) {
-                showToast('請填寫完整聯絡資訊', 'error');
+        // 返回購物車
+        function backToCartFromCheckout() {
+            closeCheckoutModal();
+            document.getElementById('cart-modal').classList.remove('hidden');
+        }
+
+        // 6. 填寫並確認訂購與付款資訊: add_payment_info + purchase
+        function completePurchase() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const bank5 = document.getElementById('cust-bank5').value.trim();
+
+            if (!name || !phone || !address || !bank5) {
+                showToast('請填寫完整的訂購與付款資訊', 'error');
                 return;
             }
 
             const total = cart.reduce((sum, item) => sum + item.price, 0);
-
-            // 切換視圖
-            document.getElementById('checkout-step-1').classList.add('hidden');
-            document.getElementById('checkout-step-2').classList.remove('hidden');
-            document.getElementById('checkout-step-title').innerText = '填寫信用卡資訊 (模擬)';
+            const transactionId = 'T_' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
             // 觸發 GA4 事件: add_payment_info
             gtag('event', 'add_payment_info', {
                 currency: 'TWD',
                 value: total,
-                payment_type: 'Credit Card',
+                payment_type: 'Bank Transfer',
                 items: cart.map(item => formatGA4Item(item))
             });
-        }
-
-        function backToInfo() {
-            document.getElementById('checkout-step-2').classList.add('hidden');
-            document.getElementById('checkout-step-1').classList.remove('hidden');
-            document.getElementById('checkout-step-title').innerText = '填寫承租人資料';
-        }
-
-        // 7. 完成購買: purchase
-        function completePurchase() {
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            const transactionId = 'T_' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
             // 觸發 GA4 事件: purchase
             gtag('event', 'purchase', {
@@ -542,8 +526,8 @@
             // 清空表單
             document.getElementById('cust-name').value = '';
             document.getElementById('cust-phone').value = '';
-            const inputs = document.querySelectorAll('#checkout-step-2 input');
-            inputs.forEach(input => input.value = '');
+            document.getElementById('cust-address').value = '';
+            document.getElementById('cust-bank5').value = '';
         }
 
         // 初始化
