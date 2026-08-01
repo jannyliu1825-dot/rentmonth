@@ -45,7 +45,8 @@
         // 在此處填寫您的 Supabase 專案資訊
         const SUPABASE_URL = 'https://erreasyjyqwuulcbnjse.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_NA08_da3dkB9YT4w5JnD1Q_CInQYMfZ';
-        
+        const ORDERS_TABLE  = 'orders';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
         // 預備初始化 (取消註解即可使用)
         // const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         console.log('Supabase configuration area loaded.');
